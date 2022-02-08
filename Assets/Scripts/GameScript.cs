@@ -18,6 +18,7 @@ public class GameScript : MonoBehaviour
         
     }
 
+    //Updates enemy ships left display on the shipsLeftText
     public void changeShips(int am)
     {
         shipsLeft += am;
@@ -28,6 +29,7 @@ public class GameScript : MonoBehaviour
         }
     }
 
+    //Exits and returns to menu scene.
     public void exit()
     {
         Application.LoadLevel("MenuScene");

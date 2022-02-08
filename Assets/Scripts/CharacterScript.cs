@@ -12,6 +12,7 @@ public class CharacterScript : MonoBehaviour
     //Controls character speed.
     [SerializeField] float m_Speed;
     [SerializeField] int health;
+    [SerializeField] int money;
     public Text healthText;
     [SerializeField] List<Item> inventory;
     public GameObject inventory_display;
@@ -135,7 +136,20 @@ public class CharacterScript : MonoBehaviour
     public void changeHealth(int am)
     {
         health += am;
-        healthText.text = "Health: " + health;
+        healthText.text = "Health: " + health + " Money: " + money;
+    }
+
+    //This adds am to this character's money.
+    public void changeMoney(int am)
+    {
+        money += am;
+        healthText.text = "Health: " + health + "Money: " + money;
+    }
+
+    //This function gets a character's money
+    public int getMoney()
+    {
+        return money;
     }
 
     //This function adds an item to inventory and adds its image to the inventory screen.
@@ -149,13 +163,17 @@ public class CharacterScript : MonoBehaviour
 
     }
 
-
+    //This function returns whether the inventory contains this item.
+    public bool containsItem(Item item)
+    {
+        return inventory.Contains(item);
+    }
 
     //This function removes the item from inventory and removes its image from the inventory screen 
     public void removeFromInventory(Item item)
     {
         inventory.Remove(item);
-        GameObject old_item = GameObject.Find(item.item_image.name);
+        GameObject old_item = GameObject.Find(item.item_image.name+"(Clone)");
         Destroy(old_item);
     }
 

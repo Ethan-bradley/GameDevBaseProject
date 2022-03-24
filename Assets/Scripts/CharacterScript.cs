@@ -222,6 +222,11 @@ public class CharacterScript : MonoBehaviour
                 Application.LoadLevel("MenuScene");
             }
         }
+
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
 

@@ -61,9 +61,13 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //If that object has the bullet tag then remove 1 health from this ship.
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "PlayerBullet")
         {
             changeHealth(-1);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Bullet")
+        {
             Destroy(collision.gameObject);
         }
     }

@@ -165,7 +165,12 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 7247318417544140501}
   m_Speed: 0.1
   health: 10
+  money: 0
+  rotationRate: 500
   healthText: {fileID: 0}
   inventory: []
   inventory_display: {fileID: 0}
   equiped: []
+  yourButton: {fileID: 0}
+  bullet: {fileID: 0}
+  gun: {fileID: 0}

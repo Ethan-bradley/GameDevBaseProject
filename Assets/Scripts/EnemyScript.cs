@@ -66,5 +66,9 @@ public class EnemyScript : MonoBehaviour
             changeHealth(-1);
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

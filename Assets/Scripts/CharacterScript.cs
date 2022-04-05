@@ -13,6 +13,7 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] float m_Speed;
     [SerializeField] int health;
     [SerializeField] int money;
+    [SerializeField] float rotationRate;
     public Text healthText;
     [SerializeField] List<Item> inventory;
     public GameObject inventory_display;
@@ -91,6 +92,8 @@ public class CharacterScript : MonoBehaviour
             transform.Translate(0, 1.0f, 0);
 
         }
+
+        /*
         //Rotates character with R button.
         if (Input.GetKey(KeyCode.R))
         {
@@ -102,6 +105,11 @@ public class CharacterScript : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * m_Speed * 50, Space.World);
         }
+        */
+
+        transform.Rotate(new Vector3(0, 1, 0) * Input.GetAxis("Mouse X")
+            * Time.deltaTime * rotationRate, Space.World);
+
         //Increases character speed on mouse button down.
         if (Input.GetMouseButtonDown(0))
         {
@@ -213,7 +221,7 @@ public class CharacterScript : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "EnemyBullet")
         {
             changeHealth(-1);
             Destroy(collision.gameObject);
@@ -221,6 +229,11 @@ public class CharacterScript : MonoBehaviour
             {
                 Application.LoadLevel("MenuScene");
             }
+        }
+
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            Destroy(collision.gameObject);
         }
     }
 

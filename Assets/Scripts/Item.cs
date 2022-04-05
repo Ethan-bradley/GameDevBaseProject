@@ -23,6 +23,6 @@ public class Item : MonoBehaviour
     //Adds to the player's inventory when this object is clicked.
     public void OnMouseDown()
     {
-        player.addToInventory(this);
+        //player.addToInventory(this);
     }
 }

@@ -13,7 +13,6 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] float m_Speed;
     [SerializeField] int health;
     [SerializeField] int money;
-    [SerializeField] float rotationRate;
     public Text healthText;
     [SerializeField] List<Item> inventory;
     public GameObject inventory_display;
@@ -92,7 +91,7 @@ public class CharacterScript : MonoBehaviour
             transform.Translate(0, 1.0f, 0);
 
         }
-        /*//Rotates character with R button.
+        //Rotates character with R button.
         if (Input.GetKey(KeyCode.R))
         {
             transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * m_Speed * 50, Space.World);
@@ -102,11 +101,7 @@ public class CharacterScript : MonoBehaviour
         if (Input.GetKey(KeyCode.T))
         {
             transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * m_Speed * 50, Space.World);
-        }*/
-
-        transform.Rotate(new Vector3(0, 1, 0) * Input.GetAxis("Mouse X") * Time.deltaTime *
-            rotationRate, Space.World);
-
+        }
         //Increases character speed on mouse button down.
         if (Input.GetMouseButtonDown(0))
         {

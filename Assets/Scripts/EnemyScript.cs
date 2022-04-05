@@ -15,6 +15,8 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gs = FindObjectOfType<GameScript>();
+        target = FindObjectOfType<CharacterScript>().gameObject;
         StartCoroutine(run());   
     }
 

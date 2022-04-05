@@ -35,7 +35,6 @@ public class EnemySpawner : MonoBehaviour
         game.changeShips(1);
         var enemyInstance = Instantiate(enemyPrefab, transform.position,
                 Quaternion.identity);
-        enemyInstance.GetComponent<EnemyMovement>().MoveToPlayer();
         
     }
 }

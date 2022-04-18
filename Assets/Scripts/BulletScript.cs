@@ -31,7 +31,7 @@ public class BulletScript : MonoBehaviour
             }
             m_Rigidbody.velocity += transform.forward * m_Speed;
             yield return new WaitForSeconds(1.0f);
-            if (total_time > 5)
+            if (total_time > 3)
             {
                 Destroy(this);
             }

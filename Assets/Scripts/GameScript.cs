@@ -25,7 +25,7 @@ public class GameScript : MonoBehaviour
         shipsLeftText.text = "Enemies Left: " + shipsLeft;
         if (shipsLeft <= 0)
         {
-            exit();
+            //exit();
         }
     }
 

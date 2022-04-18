@@ -13,6 +13,7 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] float m_Speed;
     [SerializeField] int health;
     [SerializeField] int money;
+    [SerializeField] int plasma;
     [SerializeField] float rotationRate;
     public Text healthText;
     [SerializeField] List<Item> inventory;
@@ -144,14 +145,14 @@ public class CharacterScript : MonoBehaviour
     public void changeHealth(int am)
     {
         health += am;
-        healthText.text = "Health: " + health + " Money: " + money;
+        healthText.text = "Health: " + health + " Money: " + money + "Plasma: "+plasma;
     }
 
     //This adds am to this character's money.
     public void changeMoney(int am)
     {
         money += am;
-        healthText.text = "Health: " + health + "Money: " + money;
+        healthText.text = "Health: " + health + "Money: " + money + "Plasma: " + plasma;
     }
 
     //This function gets a character's money
@@ -163,8 +164,10 @@ public class CharacterScript : MonoBehaviour
     //This function adds an item to inventory and adds its image to the inventory screen.
     public void addToInventory(Item item)
     {
-        inventory.Add(item);
         GameObject new_item = Instantiate(item.item_image) as GameObject;
+        Item new_item2 = Instantiate(item) as Item;
+        new_item2.item_image = new_item;
+        inventory.Add(new_item2);
         new_item.GetComponent<InventoryButtonScript>().cs = this;
         new_item.transform.SetParent(inventory_display.transform, false);
         item.player = this;
@@ -174,28 +177,67 @@ public class CharacterScript : MonoBehaviour
     //This function returns whether the inventory contains this item.
     public bool containsItem(Item item)
     {
-        return inventory.Contains(item);
+        foreach (Item inventory_item in inventory)
+        {
+            //Debug.Log(item.name);
+            //Debug.Log(inventory_item.name);
+            if (inventory_item.name == item.name)
+            {
+                return true;
+            }
+        }
+        return false;
+        //return inventory.Contains(item);
+    }
+
+    public bool containsItem(string item_name)
+    {
+        foreach (Item inventory_item in inventory)
+        {
+            //Debug.Log(item.name);
+            //Debug.Log(inventory_item.name);
+            if (inventory_item.name == item_name)
+            {
+                return true;
+            }
+        }
+        return false;
+        //return inventory.Contains(item);
     }
 
     //This function removes the item from inventory and removes its image from the inventory screen 
     public void removeFromInventory(Item item)
     {
-        inventory.Remove(item);
-        GameObject old_item = GameObject.Find(item.item_image.name+"(Clone)");
-        Destroy(old_item);
+        //inventory.Remove(item);
+        foreach (Item inventory_item in inventory)
+        {
+            //Debug.Log(item.name);
+            //Debug.Log(inventory_item.name);
+            if (inventory_item.name == item.name)
+            {
+                //GameObject old_item = GameObject.Find(inventory_item.item_image.name);
+                Destroy(inventory_item.item_image);
+                inventory.Remove(inventory_item);
+                return;
+
+            }
+        }
     }
 
     //This function removes the item from inventory and removes its image from the inventory screen 
     public void removeFromInventory(string item_name)
     {
-        Item item = GameObject.Find(item_name).GetComponent<Item>();
-        //Debug.Log(inventory.ToArray());
-        Debug.Log(item.name);
-        temp_string = item.name;
-        Debug.Log(inventory.FindIndex(nameEquals));
-        inventory.Remove(item);
-        GameObject old_item = GameObject.Find(item.item_image.name);
-        Destroy(old_item);
+        foreach (Item inventory_item in inventory)
+        {
+            if (inventory_item.name == item_name)
+            {
+                //GameObject old_item = GameObject.Find(inventory_item.item_image.name);
+                Destroy(inventory_item.item_image);
+                inventory.Remove(inventory_item);
+                return;
+
+            }
+        }
     }
 
     private bool nameEquals(Item item)
@@ -212,11 +254,24 @@ public class CharacterScript : MonoBehaviour
     //This function shoots a bullet from the character's gun gameobject (an empty gameobject placed in front of the ship).
     private void shoot()
     {
-        GameObject temp_bullet = Instantiate(bullet) as GameObject;
-        //Sets the bullet to gun's position.
-        temp_bullet.transform.position = gun.transform.position;
-        //Sets the rotation of the bullet to that of the ship
-        temp_bullet.transform.rotation = this.transform.rotation;
+        if (plasma > 0)
+        {
+            GameObject temp_bullet = Instantiate(bullet) as GameObject;
+            //Sets the bullet to gun's position.
+            temp_bullet.transform.position = gun.transform.position;
+            //Sets the rotation of the bullet to that of the ship
+            temp_bullet.transform.rotation = this.transform.rotation;
+            plasma -= 1;
+            changeMoney(0);
+        } else
+        {
+            if (containsItem("Plasma"))
+            {
+                plasma += 50;
+                changeMoney(0);
+                removeFromInventory("Plasma");
+            }
+        }
     }
     
     private void OnCollisionEnter(Collision collision)

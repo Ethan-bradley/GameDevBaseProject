@@ -12,6 +12,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] Rigidbody m_Rigidbody;
     public GameObject gun;
     public GameScript gs;
+    public Item plasma;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +56,8 @@ public class EnemyScript : MonoBehaviour
         if (health < 0)
         {
             gs.changeShips(-1);
+            CharacterScript playerScript = target.GetComponent<CharacterScript>();
+            playerScript.addToInventory(plasma);
             Destroy(this.gameObject);
         }
     }

@@ -93,20 +93,6 @@ public class CharacterScript : MonoBehaviour
 
         }
 
-        /*
-        //Rotates character with R button.
-        if (Input.GetKey(KeyCode.R))
-        {
-            transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * m_Speed * 50, Space.World);
-        }
-
-        //Rotates character other direction with T button.
-        if (Input.GetKey(KeyCode.T))
-        {
-            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * m_Speed * 50, Space.World);
-        }
-        */
-
         transform.Rotate(new Vector3(0, 1, 0) * Input.GetAxis("Mouse X")
             * Time.deltaTime * rotationRate, Space.World);
 
@@ -227,7 +213,7 @@ public class CharacterScript : MonoBehaviour
             Destroy(collision.gameObject);
             if (health < 0)
             {
-                Application.LoadLevel("MenuScene");
+                FindObjectOfType<LevelManager>().LoadGameOverScreen();
             }
         }
 

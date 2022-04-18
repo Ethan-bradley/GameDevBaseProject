@@ -22,8 +22,10 @@ public class KamikazeEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
+        target = FindObjectOfType<CharacterScript>().gameObject;
+        gs = FindObjectOfType<GameScript>();
         StartCoroutine(chase());
-
     }
 
     // Update is called once per frame
@@ -71,7 +73,6 @@ public class KamikazeEnemy : MonoBehaviour
         health += am;
         if (health < 0)
         {
-            gs.changeShips(-1);
             explode();
         }
     }
@@ -86,6 +87,7 @@ public class KamikazeEnemy : MonoBehaviour
     // Run extra animations for a more lively explosion (NOT IMPLEMENTED FULLY)
     private void explode()
     {
+        gs.changeShips(-1);
         Destroy(this.gameObject);
     }
 

@@ -14,9 +14,14 @@ public class EnemySpawner : MonoBehaviour
 
     private GameScript game;
 
-    IEnumerator Start()
+    private void Awake()
     {
         game = FindObjectOfType<GameScript>();
+        game.changeShips(enemiesToSpawn);
+    }
+
+    IEnumerator Start()
+    {
         // Start the wave spawning coroutine.
         yield return StartCoroutine(SpawnEnemies());
     }
@@ -25,16 +30,14 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            SpawnEnemy();
             yield return new WaitForSeconds(spawnInterval);
+            SpawnEnemy();
         }
     }
 
     private void SpawnEnemy()
     {
-        game.changeShips(1);
         var enemyInstance = Instantiate(enemyPrefab, transform.position,
                 Quaternion.identity);
-        
     }
 }

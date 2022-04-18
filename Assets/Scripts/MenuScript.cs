@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
+    private LevelManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -18,7 +20,7 @@ public class MenuScript : MonoBehaviour
 
     public void newGame()
     {
-        Application.LoadLevel("SpaceScene");
+        levelManager.LoadNextLevel();
     }
 
     public void exit()

@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameScript : MonoBehaviour
 {
-    public int shipsLeft;
     public Text shipsLeftText;
+
+    private int shipsLeft;
+    private LevelManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -25,13 +28,13 @@ public class GameScript : MonoBehaviour
         shipsLeftText.text = "Enemies Left: " + shipsLeft;
         if (shipsLeft <= 0)
         {
-            //exit();
+            LoadNextLevel();
         }
     }
 
     //Exits and returns to menu scene.
-    public void exit()
+    public void LoadNextLevel()
     {
-        Application.LoadLevel("MenuScene");
+        levelManager.LoadNextLevel();
     }
 }

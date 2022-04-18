@@ -9,10 +9,12 @@ public class BuildingScript : MonoBehaviour
     public int health;
     public int cost;
     public GameObject trade_display;
+    public GameObject main_trade_display;
     public Button trade;
     [SerializeField] Item[] offers;
     [SerializeField] int[] prices;
     public CharacterScript cs;
+    private bool tradeDisplayEnabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +38,22 @@ public class BuildingScript : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log("Clicked");
-        createDisplay();
+
+        if (tradeDisplayEnabled)
+        {
+            removeDisplay();
+        }
+        else
+        {
+            createDisplay();
+        }
         //health -= 1;
     }
 
     private void createDisplay()
     {
+        tradeDisplayEnabled = true;
+        main_trade_display.SetActive(true);
         trade_display.SetActive(true);
         int i = 0;
         foreach(Item item in offers) {
@@ -60,13 +72,25 @@ public class BuildingScript : MonoBehaviour
         }
    
     }
+
+    private void removeDisplay()
+    {
+        tradeDisplayEnabled = false;
+        foreach (Transform g in trade_display.GetComponentInChildren<Transform>())
+        {
+            Destroy(g.gameObject);
+        }
+        main_trade_display.SetActive(false);
+        trade_display.SetActive(false);
+    }
+
     //Sells a particular item to the character at a certain price if the character has that item.
     void sell(Item item, int price)
     {
         if (cs.containsItem(item))
         {
-            cs.removeFromInventory(item);
             cs.changeMoney(price);
+            cs.removeFromInventory(item);
         }
     }
     //Buys a particular item at a certain price if they have enough money for it.

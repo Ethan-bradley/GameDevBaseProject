@@ -73,6 +73,7 @@ public class KamikazeEnemy : MonoBehaviour
         health += am;
         if (health < 0)
         {
+            gs.changeShips(1);
             explode();
         }
     }
@@ -81,7 +82,7 @@ public class KamikazeEnemy : MonoBehaviour
     private void dealDamage()
     {
         CharacterScript playerScript = target.GetComponent<CharacterScript>();
-        playerScript.changeHealth(damage);
+        playerScript.changeHealth(-damage);
     }
 
     // Run extra animations for a more lively explosion (NOT IMPLEMENTED FULLY)

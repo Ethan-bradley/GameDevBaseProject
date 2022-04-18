@@ -24,7 +24,10 @@ public class AsteroidScript : MonoBehaviour
         health += am;
         if (health < 0)
         {
-            player.addToInventory(gameObject.GetComponent<Item>());
+            GameObject newAsteroid = new GameObject();
+            newAsteroid = this.gameObject;
+            newAsteroid.SetActive(false);
+            player.addToInventory(newAsteroid.GetComponent<Item>());
             Destroy(this.gameObject);
         }
     }

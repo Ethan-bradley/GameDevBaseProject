@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    [SerializeField] private int damage = 10;
     public float m_Speed;
     public Rigidbody m_Rigidbody;
     public GameObject target;
@@ -19,6 +20,11 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
 
     private IEnumerator run()

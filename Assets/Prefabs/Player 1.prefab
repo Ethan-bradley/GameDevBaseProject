@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8220d65260758dc4e8e264a8b326363f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8220d65260758dc4e8e264a8b326363f, type: 3}
 --- !u!1 &2736234432127169987 stripped
@@ -92,13 +96,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rigidbody: {fileID: 0}
   m_Speed: 0.1
-  health: 10
+  health: 100
+  money: 0
+  rotationRate: 0
   healthText: {fileID: 0}
   inventory: []
   inventory_display: {fileID: 0}
   equiped: []
   yourButton: {fileID: 0}
   bullet: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!114 &578530905
 MonoBehaviour:
   m_ObjectHideFlags: 0

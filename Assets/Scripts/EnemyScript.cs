@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float m_Speed;
     //Rigidbody component associated with this AI, helps with physics related things.
     [SerializeField] Rigidbody m_Rigidbody;
+    [SerializeField] GameObject hitParticleEffect;
     public GameObject gun;
     public GameScript gs;
     public Item plasma;
@@ -68,7 +69,8 @@ public class EnemyScript : MonoBehaviour
         //If that object has the bullet tag then remove 1 health from this ship.
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            changeHealth(-1);
+            Instantiate(hitParticleEffect, collision.transform.position, Quaternion.identity);
+            changeHealth(-collision.gameObject.GetComponent<BulletScript>().GetDamage());
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Bullet")

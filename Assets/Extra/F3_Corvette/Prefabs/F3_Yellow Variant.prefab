@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e06b8b71514fdc4abbeaa1db34b0489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 100
-  distanceToStop: 300
+  moveSpeed: 20
+  distanceToStop: 50
 --- !u!114 &3430472393148550814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,5 +157,7 @@ MonoBehaviour:
   health: 2
   m_Speed: 0
   m_Rigidbody: {fileID: 616313209437697381}
+  hitParticleEffect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
   gun: {fileID: 5140820971963190605}
   gs: {fileID: 0}
+  plasma: {fileID: 953274896763146701, guid: d2967d796a3854d6991af6924d63dce7, type: 3}

@@ -17,6 +17,7 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] float rotationRate;
     public Text healthText;
     [SerializeField] List<Item> inventory;
+    [SerializeField] GameObject hitParticleEffect;
     public GameObject inventory_display;
     //Currently equipped items.
     [SerializeField] List<Item> equiped;
@@ -26,6 +27,18 @@ public class CharacterScript : MonoBehaviour
     public Button yourButton;
     public GameObject bullet;
     public GameObject gun;
+
+    private void Awake()
+    {
+        if (FindObjectsOfType<CharacterScript>().Length > 1)
+        {
+            Destroy(this.gameObject);
+        } 
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -157,7 +170,6 @@ public class CharacterScript : MonoBehaviour
         new_item.GetComponent<InventoryButtonScript>().cs = this;
         new_item.transform.SetParent(inventory_display.transform, false);
         item.player = this;
-
     }
 
     //This function returns whether the inventory contains this item.
@@ -259,12 +271,13 @@ public class CharacterScript : MonoBehaviour
             }
         }
     }
-    
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "EnemyBullet")
         {
             changeHealth(-1);
+            Instantiate(hitParticleEffect, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
             if (health < 0)
             {

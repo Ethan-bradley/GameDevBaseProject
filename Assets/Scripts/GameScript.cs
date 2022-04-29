@@ -6,13 +6,24 @@ public class GameScript : MonoBehaviour
 {
     public Text shipsLeftText;
 
-    private int shipsLeft;
-    private LevelManager levelManager;
+    private int shipsLeft = 0;
+
+    private void Awake()
+    {
+        if (FindObjectsOfType<GameScript>().Length > 1)
+        {
+            Destroy(this.gameObject);
+        } 
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+
     }
 
     // Update is called once per frame
@@ -35,6 +46,6 @@ public class GameScript : MonoBehaviour
     //Exits and returns to menu scene.
     public void LoadNextLevel()
     {
-        levelManager.LoadNextLevel();
+        FindObjectOfType<LevelManager>().LoadNextLevel();
     }
 }

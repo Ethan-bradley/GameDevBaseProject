@@ -55,11 +55,16 @@ public class BuildingScript : MonoBehaviour
         tradeDisplayEnabled = true;
         main_trade_display.SetActive(true);
         trade_display.SetActive(true);
+        Button new_button = Instantiate(trade);
+        new_button.transform.SetParent(trade_display.transform, false);
+        new_button.GetComponentInChildren<Text>().text = "Exit Trade Station";
+        new_button.GetComponent<Button>().onClick.AddListener(delegate { removeDisplay(); });
+
         int i = 0;
         foreach(Item item in offers) {
             //Create sell button for item
             int price = prices[i];
-            Button new_button = Instantiate(trade);
+            new_button = Instantiate(trade);
             new_button.transform.SetParent(trade_display.transform, false);
             new_button.GetComponentInChildren<Text>().text  = "Sell " + item.name + " $"+prices[i];
             new_button.GetComponent<Button>().onClick.AddListener(delegate { sell(item, price); });

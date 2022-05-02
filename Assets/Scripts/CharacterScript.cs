@@ -14,6 +14,7 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] int health;
     [SerializeField] int money;
     [SerializeField] int plasma;
+    [SerializeField] int fuel;
     [SerializeField] float rotationRate;
     public Text healthText;
     [SerializeField] List<Item> inventory;
@@ -128,6 +129,7 @@ public class CharacterScript : MonoBehaviour
             shoot();
         }
 
+
     }
 
     public float getSpeed()
@@ -233,7 +235,6 @@ public class CharacterScript : MonoBehaviour
                 Destroy(inventory_item.item_image);
                 inventory.Remove(inventory_item);
                 return;
-
             }
         }
     }

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8998918707839403654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2621728538653028532, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: name
+      value: Hydrogen Fuel Cell
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621728538653028532, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621728538653028532, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: item_image
+      value: 
+      objectReference: {fileID: 6404448279731255413, guid: e3b8a2cb5bc474194bcb84914c4f3333, type: 3}
+    - target: {fileID: 2981336404787891108, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_Name
+      value: Hydrogen Fuel Cell Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 48.752617
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609329384038541664, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}

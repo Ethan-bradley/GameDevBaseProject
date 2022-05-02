@@ -33,9 +33,9 @@ public class BulletScript : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             if (total_time > 3)
             {
-                Destroy(this);
+                DestroyImmediate(this.gameObject, true);
+                break;
             }
-
         }
     }
 

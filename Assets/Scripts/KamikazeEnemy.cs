@@ -13,11 +13,12 @@ public class KamikazeEnemy : MonoBehaviour
 
     [SerializeField] int health;
     [SerializeField] float m_Speed;
+    [SerializeField] GameObject hitParticleEffect;
 
     // This needs to be set before the start of the game or else it will do 0 damage
     // Serialized so it can be adjusted as needed through Unity
     [SerializeField] int damage;
-
+    private bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +74,13 @@ public class KamikazeEnemy : MonoBehaviour
         health += am;
         if (health < 0)
         {
-            gs.changeShips(1);
+            if (!dead)
+            {
+                gs.changeShips(-1);
+                dead = true;
+            }
             explode();
+            Destroy(this.gameObject);
         }
     }
 
@@ -93,17 +99,18 @@ public class KamikazeEnemy : MonoBehaviour
     }
 
     // This function runs on colliding with another object with a collider
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         bool isBullet = false;
         // Sets the isBullet bool value to true if the enemy ship collides with a bullet
         // Also checks for collision with the player
-        if ((isBullet = other.gameObject.tag == "Bullet") || other.gameObject.tag == "Player")
+        if ((isBullet = other.gameObject.tag == "PlayerBullet") || other.gameObject.tag == "Player")
         {
             // If isBullet is true, then you must destroy the bullet object
             // This is needed so that the player object isn't destroy upon collision with the kamikaze
             if (isBullet)
             {
+                Instantiate(hitParticleEffect, other.transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
             }
             else

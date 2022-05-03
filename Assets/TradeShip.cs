@@ -1,54 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class EnemyScript : MonoBehaviour
+
+public class TradeShip : MonoBehaviour
 {
     //Current target of this enemy AI
     public GameObject target;
-    public GameObject bullet;
+    public GameObject source;
     [SerializeField] int health;
     [SerializeField] float m_Speed;
     //Rigidbody component associated with this AI, helps with physics related things.
     [SerializeField] Rigidbody m_Rigidbody;
     [SerializeField] GameObject hitParticleEffect;
-    public GameObject gun;
     public GameScript gs;
+    public GameObject player;
     public Item plasma;
     private bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
         gs = FindObjectOfType<GameScript>();
-        target = FindObjectOfType<CharacterScript>().gameObject;
-        StartCoroutine(run());   
+        player = FindObjectOfType<CharacterScript>().gameObject;
+        StartCoroutine(run());
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
     }
     //This IEnumerator runs once every second and causes the enemy ship to look at the player's ship, move towards it, and shoot.
     private IEnumerator run()
     {
         while (true)
         {
-            transform.LookAt(target.transform);
-            m_Rigidbody.velocity = transform.forward * m_Speed;
-            shoot();
-            yield return new WaitForSeconds(1.0f);
+            if (Vector3.Distance(this.transform.position, target.transform.position) > 100)
+            {
+                transform.LookAt(target.transform);
+                m_Rigidbody.velocity = transform.forward * m_Speed;
+                yield return new WaitForSeconds(5.0f);
+            } else
+            {
+                yield return new WaitForSeconds(5.0f);
+                GameObject temptarget = target;
+                target = source;
+                source = temptarget;
+            }
         }
-    }
-
-    //Shoot function for enemy ship.
-    //This function shoots a bullet from the enemy's gun gameobject (an empty gameobject placed in front of the ship).
-    private void shoot()
-    {
-        GameObject temp_bullet = Instantiate(bullet) as GameObject;
-        //Sets the bullet to gun's position.
-        temp_bullet.transform.position = gun.transform.position;
-        //bullet.transform.position = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z - 80);
-        temp_bullet.GetComponent<BulletScript>().target = target;
     }
 
     //This adds am to this character's health. If health is less than 0 destroy this object.
@@ -59,9 +57,8 @@ public class EnemyScript : MonoBehaviour
         {
             if (!dead)
             {
-                gs.changeShips(-1);
                 dead = true;
-                CharacterScript playerScript = target.GetComponent<CharacterScript>();
+                CharacterScript playerScript = player.GetComponent<CharacterScript>();
                 playerScript.addToInventory(plasma);
             }
             Destroy(this.gameObject);

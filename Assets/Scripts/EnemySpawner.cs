@@ -12,7 +12,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int enemiesToSpawn = 5;
     [SerializeField] private GameObject enemyPrefab = null;
 
-    private GameScript game;
+    [SerializeField] private GameScript game;
+    public GameObject target;
 
     private void Awake()
     {
@@ -22,6 +23,13 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator Start()
     {
+        if (target != null)
+        {
+            while (Vector3.Distance(this.transform.position, target.transform.position) > 2000)
+            {
+                yield return new WaitForSeconds(3.0f);
+            }
+        }
         // Start the wave spawning coroutine.
         yield return StartCoroutine(SpawnEnemies());
     }

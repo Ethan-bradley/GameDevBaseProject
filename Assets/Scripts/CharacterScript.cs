@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEditor.Events;
 using System;
 
 public class CharacterScript : MonoBehaviour
@@ -28,6 +26,7 @@ public class CharacterScript : MonoBehaviour
     public Button yourButton;
     public GameObject bullet;
     public GameObject gun;
+    [SerializeField] private bool mouseRotation = true;
 
     private void Awake()
     {
@@ -108,19 +107,27 @@ public class CharacterScript : MonoBehaviour
 
         }
 
-        transform.Rotate(new Vector3(0, 1, 0) * Input.GetAxis("Mouse X")
-            * Time.deltaTime * rotationRate, Space.World);
+        if (mouseRotation)
+        {
+            transform.Rotate(new Vector3(0, 1, 0) * Input.GetAxis("Mouse X")
+                * Time.deltaTime * rotationRate, Space.World);
+        }
+
+        if (Input.GetKey(KeyCode.X))
+        {
+            mouseRotation = !mouseRotation;
+        }
 
         //Increases character speed on mouse button down.
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.U))
         {
-            m_Speed += 1.0f;
+            m_Speed += 5.0f;
 
         }
         //Decreases character speed on second mouse button press.
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKey(KeyCode.J))
         {
-            m_Speed -= 1.0f;
+            m_Speed -= 5.0f;
 
         }
         //Calls the shoot function when the space bar is pressed.

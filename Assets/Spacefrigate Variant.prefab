@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1247619388254216, guid: 873baea37cdd7424c83ba02ad24c23b2, type: 3}
       propertyPath: m_Name
-      value: Spacefrigate
+      value: Spacefrigate Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4101211991966078, guid: 873baea37cdd7424c83ba02ad24c23b2, type: 3}
       propertyPath: m_RootOrder
@@ -90,26 +90,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &267826043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667227460817840959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0c921b6b1274cc7a948dcb10f914c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  bullet: {fileID: 0}
-  health: 0
-  m_Speed: 0
-  m_Rigidbody: {fileID: 267826042}
-  gun: {fileID: 0}
-  gs: {fileID: 0}
-  plasma: {fileID: 2621728538653028532, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}
 --- !u!114 &267826044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +104,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   distanceToStop: 300
+--- !u!114 &8786967319626830763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667227460817840959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cc4609e58ef45cfa35996a676226ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  source: {fileID: 0}
+  health: 2
+  m_Speed: 5
+  m_Rigidbody: {fileID: 267826042}
+  hitParticleEffect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
+  gs: {fileID: 0}
+  plasma: {fileID: 2621728538653028532, guid: 6565eefb0cc2949c387f2eb9708bb5a0, type: 3}

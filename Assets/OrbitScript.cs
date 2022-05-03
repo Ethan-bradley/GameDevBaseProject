@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OrbitScript : MonoBehaviour
 {
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class OrbitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.RotateAround(target.transform.position, Vector3.up, 5 * Time.deltaTime);
     }
 }
